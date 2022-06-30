@@ -52,6 +52,10 @@ public class Main {
 
         List<Veiculo> listaOrdenadaPorMarca = listaDeVeiculos.stream().sorted(Comparator.comparing(Veiculo::getMarca)).collect(Collectors.toList());
 
+        List<Veiculo> listaPrecoMenorQueMil = listaDeVeiculos.stream().filter(veiculo -> veiculo.getPreco() > 1000).collect(Collectors.toList());
+
+        List<Veiculo> listaPrecoMaiorOuIgualMil = listaDeVeiculos.stream().filter(veiculo -> veiculo.getPreco() <= 1000).collect(Collectors.toList());
+
         System.out.println("Lista de Veículos, ordenada por preço:");
         listaOrdenadaPorPreco.forEach((veiculo) -> {
             System.out.println(String.format("Veículo %s, preço %d", veiculo.getModelo(), veiculo.getPreco()));
@@ -61,6 +65,20 @@ public class Main {
 
         System.out.println("Lista de Veículos, ordenada por marca:");
         listaOrdenadaPorMarca.forEach((veiculo) -> {
+            System.out.println(String.format("Veículo %s, marca %s", veiculo.getModelo(), veiculo.getMarca()));
+        });
+
+        System.out.println(" ");
+
+        System.out.println("Lista de Veículos cujo preço é menor que mil:");
+        listaPrecoMenorQueMil.forEach((veiculo) -> {
+            System.out.println(String.format("Veículo %s, marca %s", veiculo.getModelo(), veiculo.getMarca()));
+        });
+
+        System.out.println(" ");
+
+        System.out.println("Lista de Veículos cujo preço é maior ou igual a mil:");
+        listaPrecoMaiorOuIgualMil.forEach((veiculo) -> {
             System.out.println(String.format("Veículo %s, marca %s", veiculo.getModelo(), veiculo.getMarca()));
         });
     }
