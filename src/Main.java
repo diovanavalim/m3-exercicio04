@@ -48,14 +48,20 @@ public class Main {
 
         System.out.println(" ");
 
-        Stream<Veiculo> listaDeVeiculosStream = listaDeVeiculos.stream();
+        List<Veiculo> listaOrdenadaPorPreco = listaDeVeiculos.stream().sorted(Comparator.comparing(Veiculo::getPreco)).collect(Collectors.toList());
 
-        List<Veiculo> lista = listaDeVeiculosStream.sorted(Comparator.comparing(Veiculo::getPreco)).collect(Collectors.toList());
+        List<Veiculo> listaOrdenadaPorMarca = listaDeVeiculos.stream().sorted(Comparator.comparing(Veiculo::getMarca)).collect(Collectors.toList());
 
-        System.out.println("Lista de Veículos, ordenada:");
-        lista.forEach((veiculo) -> {
-                    System.out.println(String.format("Veículo %s, preço %d", veiculo.getModelo(), veiculo.getPreco()));
-                }
-        );
+        System.out.println("Lista de Veículos, ordenada por preço:");
+        listaOrdenadaPorPreco.forEach((veiculo) -> {
+            System.out.println(String.format("Veículo %s, preço %d", veiculo.getModelo(), veiculo.getPreco()));
+        });
+
+        System.out.println(" ");
+
+        System.out.println("Lista de Veículos, ordenada por marca:");
+        listaOrdenadaPorMarca.forEach((veiculo) -> {
+            System.out.println(String.format("Veículo %s, marca %s", veiculo.getModelo(), veiculo.getMarca()));
+        });
     }
 }
